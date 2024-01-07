@@ -207,8 +207,10 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ttv10")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.936043
+frame_progress = 0.398716
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_g7d6o")
+
+[node name="Camera2D" type="Camera2D" parent="."]
