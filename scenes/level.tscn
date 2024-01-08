@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://muiqk6m3mx82"]
+[gd_scene load_steps=11 format=3 uid="uid://muiqk6m3mx82"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ygo20"]
 [ext_resource type="PackedScene" uid="uid://wwgs6ss4w346" path="res://scenes/bg.tscn" id="2_b7g0q"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fhmreojyd2wd" path="res://scenes/spike_ball.tscn" id="5_s20t5"]
 [ext_resource type="PackedScene" uid="uid://wuu63ynnk8w7" path="res://scenes/tile_map.tscn" id="7_s15ii"]
 [ext_resource type="PackedScene" uid="uid://obxhd6eae6pj" path="res://scenes/start.tscn" id="8_mpgb2"]
+[ext_resource type="PackedScene" uid="uid://ho5xkpomwpy7" path="res://scenes/exit.tscn" id="9_kw08q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdjsj"]
 size = Vector2(790, 20)
@@ -53,5 +54,8 @@ layer_0/tile_data = PackedInt32Array(720901, 393216, 2, 720902, 458752, 2, 72090
 
 [node name="Start" parent="." instance=ExtResource("8_mpgb2")]
 position = Vector2(104, 144)
+
+[node name="Exit" parent="." instance=ExtResource("9_kw08q")]
+position = Vector2(170, 144)
 
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
