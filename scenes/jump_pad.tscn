@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvcrw4vr4phoq"]
+[gd_scene load_steps=14 format=3 uid="uid://dvcrw4vr4phoq"]
 
+[ext_resource type="Script" path="res://scripts/jump_pad.gd" id="1_b0kyg"]
 [ext_resource type="Texture2D" uid="uid://ji13aa5chdvm" path="res://assets/textures/other/Idle.png" id="1_mfkq8"]
 [ext_resource type="Texture2D" uid="uid://bq8nb2rbjkkjl" path="res://assets/textures/other/Jump (28x28).png" id="2_xf5y5"]
 
@@ -80,6 +81,7 @@ size = Vector2(23, 10)
 
 [node name="JumpPad" type="Area2D"]
 collision_mask = 2
+script = ExtResource("1_b0kyg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_om3ya")
@@ -91,3 +93,5 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 9)
 shape = SubResource("RectangleShape2D_itwex")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
