@@ -1,9 +1,12 @@
 extends Node2D
 
 @onready var start = $Start
+@onready var exit = $Exit
+
 var player = null
 
 func _ready():
+	exit.connect('body_entered', _on_body_entered)
 	player = get_tree().get_first_node_in_group('player')
 	if player != null:
 		player.position = start.get_spawn_pos()
@@ -25,3 +28,7 @@ func _on_deathzone_body_entered(body):
 func _on_trap_touched_player():
 	player.velocity = Vector2.ZERO
 	player.position = start.get_spawn_pos()
+	
+func _on_body_entered(body):
+	body.active = false
+	exit.animate()

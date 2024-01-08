@@ -5,6 +5,7 @@ extends CharacterBody2D
 var GRAVITY = 400
 var SPEED = 150
 var JUMP_FORCE = 200
+var active = true
 
 func _physics_process(delta):
 	
@@ -13,11 +14,13 @@ func _physics_process(delta):
 		if velocity.y == 500:
 			velocity.y = 500
 	
-	if Input.is_action_just_pressed('jump') && is_on_floor():
-		jump(JUMP_FORCE)
+	var direction = 0
+	if active == true:
+		if Input.is_action_just_pressed('jump') && is_on_floor():
+			jump(JUMP_FORCE)
+			
+		direction = Input.get_axis('left', 'right')
 		
-	var direction = Input.get_axis('left', 'right')
-	
 	if direction != 0:
 		animated_sprite.flip_h = (direction == -1)
 	
