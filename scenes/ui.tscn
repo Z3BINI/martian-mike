@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmjw5df7x2gml"]
+[gd_scene load_steps=4 format=3 uid="uid://cmjw5df7x2gml"]
 
 [ext_resource type="PackedScene" uid="uid://dblll7gegliba" path="res://scenes/hud.tscn" id="1_hivt7"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_hwbnx"]
+[ext_resource type="PackedScene" uid="uid://dbnabxn8nwgwk" path="res://scenes/win_screen.tscn" id="2_h7bri"]
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_hwbnx")
 
 [node name="HUD" parent="." instance=ExtResource("1_hivt7")]
+
+[node name="WinScreen" parent="." instance=ExtResource("2_h7bri")]
+visible = false
