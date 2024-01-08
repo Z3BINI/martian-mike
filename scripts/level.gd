@@ -3,6 +3,12 @@ extends Node2D
 @onready var start_pos = $StartPosition
 @onready var player = $Player
 
+func _ready():
+	var traps = get_tree().get_nodes_in_group('traps')
+	
+	for trap in traps:
+		trap.connect('touched_player', _on_trap_touched_player)
+
 func _process(delta):
 	if Input.is_action_pressed('quit'):
 		get_tree().quit()
