@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var is_final_level = false
 @export var next_level : PackedScene = null 
 @export var level_time = 5
 
@@ -7,6 +8,7 @@ extends Node2D
 @onready var exit = $Exit
 @onready var deathzone = $Deathzone
 @onready var hud = $UI/HUD
+@onready var ui = $UI
 
 var player = null
 var timer_node = null
@@ -65,5 +67,8 @@ func _on_body_entered(body):
 	body.active = false
 	exit.animate()
 	await get_tree().create_timer(1.5).timeout
-	if next_level != null:
+	
+	if next_level != null && is_final_level != true:
 		get_tree().change_scene_to_packed(next_level)
+	else:
+		ui.show_win_screen(true)
