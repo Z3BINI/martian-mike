@@ -43,4 +43,8 @@ shape = SubResource("RectangleShape2D_rdjsj")
 [node name="JumpPad" parent="." instance=ExtResource("4_jy4lx")]
 position = Vector2(332, 152)
 
+[node name="JumpPad2" parent="." instance=ExtResource("4_jy4lx")]
+position = Vector2(152, 152)
+JUMP_FORCE = 400
+
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
