@@ -1,12 +1,16 @@
 extends Node2D
 
 @export var next_level : PackedScene = null 
+@export var level_time = 5
 
 @onready var start = $Start
 @onready var exit = $Exit
 @onready var deathzone = $Deathzone
 
 var player = null
+var timer_node = null
+var time_left = level_time
+var win = false
 
 func _ready():
 	exit.connect('body_entered', _on_body_entered)
@@ -17,6 +21,24 @@ func _ready():
 	var traps = get_tree().get_nodes_in_group('traps')
 	for trap in traps:
 		trap.connect('touched_player', _on_trap_touched_player)
+	
+	level_timer_setup()	
+	
+func level_timer_setup():
+	timer_node = Timer.new()
+	timer_node.name = 'LevelTimer'
+	timer_node.wait_time = 1
+	timer_node.timeout.connect(_on_level_timer_timeout)
+	add_child(timer_node)
+	timer_node.start()
+	
+func _on_level_timer_timeout():
+	if win == false:
+		time_left -= 1
+		if time_left <= 0:
+			reset_player()
+			time_left = level_time
+		
 
 func _process(delta):
 	if Input.is_action_pressed('quit'):
@@ -24,16 +46,18 @@ func _process(delta):
 	if Input.is_action_pressed('reset'):
 		get_tree().reload_current_scene()
 
-
-func _on_deathzone_body_entered(body):
-	player.velocity = Vector2.ZERO
-	body.position = start.get_spawn_pos()
-
-func _on_trap_touched_player():
+func reset_player():
 	player.velocity = Vector2.ZERO
 	player.position = start.get_spawn_pos()
+
+func _on_deathzone_body_entered(body):
+	reset_player()
+
+func _on_trap_touched_player():
+	reset_player()
 	
 func _on_body_entered(body):
+	win = true
 	body.active = false
 	exit.animate()
 	await get_tree().create_timer(1.5).timeout
