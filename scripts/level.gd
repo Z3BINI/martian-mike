@@ -12,11 +12,10 @@ extends Node2D
 
 var player = null
 var timer_node = null
-var time_left = level_time
 var win = false
+var time_left = null
 
 func _ready():
-	hud.set_time_label(time_left)
 	exit.connect('body_entered', _on_body_entered)
 	deathzone.body_entered.connect(_on_deathzone_body_entered)
 	player = get_tree().get_first_node_in_group('player')
@@ -29,6 +28,8 @@ func _ready():
 	level_timer_setup()	
 	
 func level_timer_setup():
+	time_left = level_time
+	hud.set_time_label(time_left)
 	timer_node = Timer.new()
 	timer_node.name = 'LevelTimer'
 	timer_node.wait_time = 1
