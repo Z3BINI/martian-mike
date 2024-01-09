@@ -15,7 +15,7 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ygo20")
 next_level = ExtResource("2_100vv")
-level_time = 20
+level_time = 30
 
 [node name="UI" parent="." instance=ExtResource("3_5hk6a")]
 
