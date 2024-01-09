@@ -18,6 +18,7 @@ func _physics_process(delta):
 	if active == true:
 		if Input.is_action_just_pressed('jump') && is_on_floor():
 			jump(JUMP_FORCE)
+			AudioPlayer.play_sfx('jump')
 			
 		direction = Input.get_axis('left', 'right')
 		
