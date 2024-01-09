@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-@export var JUMP_FORCE = 300
+@export var JUMP_FORCE = 350
 
 func _on_body_entered(body):
 	animated_sprite.play('jump')
